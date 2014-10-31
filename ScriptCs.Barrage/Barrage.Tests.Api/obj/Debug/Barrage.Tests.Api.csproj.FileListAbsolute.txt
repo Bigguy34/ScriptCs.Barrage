@@ -1,0 +1,11 @@
+C:\Users\darkdragonrider\Documents\GitHub\ScriptCs.Barrage\ScriptCs.Barrage\Barrage.Tests.Api\obj\Debug\Barrage.Tests.Api.csprojResolveAssemblyReference.cache
+C:\Users\darkdragonrider\Documents\GitHub\ScriptCs.Barrage\ScriptCs.Barrage\Barrage.Tests.Api\bin\Debug\Content\nancy-logo.png
+C:\Users\darkdragonrider\Documents\GitHub\ScriptCs.Barrage\ScriptCs.Barrage\Barrage.Tests.Api\bin\Debug\Views\index.sshtml
+C:\Users\darkdragonrider\Documents\GitHub\ScriptCs.Barrage\ScriptCs.Barrage\Barrage.Tests.Api\bin\Debug\Barrage.Tests.Api.exe
+C:\Users\darkdragonrider\Documents\GitHub\ScriptCs.Barrage\ScriptCs.Barrage\Barrage.Tests.Api\bin\Debug\Barrage.Tests.Api.pdb
+C:\Users\darkdragonrider\Documents\GitHub\ScriptCs.Barrage\ScriptCs.Barrage\Barrage.Tests.Api\bin\Debug\Nancy.dll
+C:\Users\darkdragonrider\Documents\GitHub\ScriptCs.Barrage\ScriptCs.Barrage\Barrage.Tests.Api\bin\Debug\Nancy.Hosting.Self.dll
+C:\Users\darkdragonrider\Documents\GitHub\ScriptCs.Barrage\ScriptCs.Barrage\Barrage.Tests.Api\bin\Debug\Nancy.xml
+C:\Users\darkdragonrider\Documents\GitHub\ScriptCs.Barrage\ScriptCs.Barrage\Barrage.Tests.Api\bin\Debug\Nancy.Hosting.Self.xml
+C:\Users\darkdragonrider\Documents\GitHub\ScriptCs.Barrage\ScriptCs.Barrage\Barrage.Tests.Api\obj\Debug\Barrage.Tests.Api.exe
+C:\Users\darkdragonrider\Documents\GitHub\ScriptCs.Barrage\ScriptCs.Barrage\Barrage.Tests.Api\obj\Debug\Barrage.Tests.Api.pdb
