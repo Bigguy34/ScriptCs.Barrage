@@ -81,7 +81,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BarrageCreator.cs" />
+    <Compile Include="BarrageScriptPack.cs" />
+    <Compile Include="BarragePack.cs" />
     <Compile Include="Data\BarrageRequest.cs" />
     <Compile Include="Data\Delete.cs" />
     <Compile Include="Ninject\Bindings.cs" />

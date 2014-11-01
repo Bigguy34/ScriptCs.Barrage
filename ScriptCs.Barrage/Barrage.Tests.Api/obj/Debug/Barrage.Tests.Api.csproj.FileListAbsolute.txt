@@ -17,6 +17,5 @@ C:\Users\thofl_000\Documents\GitHub\ScriptCs.Barrage\ScriptCs.Barrage\Barrage.Te
 C:\Users\thofl_000\Documents\GitHub\ScriptCs.Barrage\ScriptCs.Barrage\Barrage.Tests.Api\bin\Debug\Nancy.Hosting.Self.dll
 C:\Users\thofl_000\Documents\GitHub\ScriptCs.Barrage\ScriptCs.Barrage\Barrage.Tests.Api\bin\Debug\Nancy.xml
 C:\Users\thofl_000\Documents\GitHub\ScriptCs.Barrage\ScriptCs.Barrage\Barrage.Tests.Api\bin\Debug\Nancy.Hosting.Self.xml
-C:\Users\thofl_000\Documents\GitHub\ScriptCs.Barrage\ScriptCs.Barrage\Barrage.Tests.Api\obj\Debug\Barrage.Tests.Api.csprojResolveAssemblyReference.cache
 C:\Users\thofl_000\Documents\GitHub\ScriptCs.Barrage\ScriptCs.Barrage\Barrage.Tests.Api\obj\Debug\Barrage.Tests.Api.exe
 C:\Users\thofl_000\Documents\GitHub\ScriptCs.Barrage\ScriptCs.Barrage\Barrage.Tests.Api\obj\Debug\Barrage.Tests.Api.pdb
