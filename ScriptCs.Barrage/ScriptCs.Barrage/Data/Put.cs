@@ -18,9 +18,10 @@ namespace ScriptCs.Barrage.Data
             _payload = payload;
         }
 
-        protected override Task<HttpResponseMessage> Execute(HttpClient client)
+        protected override async Task<HttpResponseMessage> Execute(HttpClient client)
         {
-            return client.PutAsync(Route, CreateJsonContent(_payload));
+            return await client.PutAsync(Route, CreateJsonContent(_payload));
+          
         }
     }
 }

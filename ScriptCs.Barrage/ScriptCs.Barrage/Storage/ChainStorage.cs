@@ -11,13 +11,13 @@ namespace ScriptCs.Barrage.Storage
 {
     public class ChainStorage : BaseSql, IChainStorage
     {
-        public override Task CreateTables()
+        public override async Task CreateTables()
         {
             using (var connection = new SQLiteConnection(Connection))
             {
-                return connection.ExecuteAsync(@"CREATE TABLE "+TableName+@"
+                await connection.ExecuteAsync(@"CREATE TABLE "+TableName+@"
                 (
-                        Id  integer identity primary key AUTOINCREMENT,
+                        Id  integer primary key AUTOINCREMENT,
                         Name text not null
                         
                 )");
@@ -28,10 +28,11 @@ namespace ScriptCs.Barrage.Storage
         {
             using (var connection = new SQLiteConnection(Connection))
             {
-                var result =  await connection.QueryAsync<int>(@"INSERT INTO Chain(Name) 
+                var result = await connection.QueryAsync(@"INSERT INTO Chain(Name) 
                                                     VALUES(@Name);
-                                                    select last_insert_rowid()", chain);
-                return result.First();
+                                                    select last_insert_rowid() as Id", chain);
+                var Id = result.First().Id;
+                return Convert.ToInt32(Id);
             }
         }
 

@@ -15,12 +15,14 @@ namespace ScriptCs.Barrage.Service
     {
         private readonly List<BarrageRequest> _barrageCollection;
         private string _baseRoute;
-        private IChainStorage _chainStorage;
+        private readonly IChainStorage _chainStorage;
+        private readonly IDiagnosticsStorage _diagnosticStorage;
         private string _name;
-        public BarrageScenrio(IChainStorage chainStorage)
+        public BarrageScenrio(IChainStorage chainStorage, IDiagnosticsStorage diagnosticStorage)
         {
             _barrageCollection = new List<BarrageRequest>();
             _chainStorage = chainStorage;
+            _diagnosticStorage = diagnosticStorage;
         }
         public void Configure(string baseRoute, string name)
         {
@@ -29,6 +31,8 @@ namespace ScriptCs.Barrage.Service
         }
         public void Add(BarrageRequest barrageRequest)
         {
+            //Load dependencies here for the sake of syntax
+            barrageRequest.LoadDepedencies(_diagnosticStorage);
             _barrageCollection.Add(barrageRequest);
         }
 
@@ -44,14 +48,16 @@ namespace ScriptCs.Barrage.Service
             chain.Id = chainId;
             using (HttpClient client = new HttpClient())
             {
+
                 client.BaseAddress = new Uri(_baseRoute);
+                client.Timeout = TimeSpan.FromMilliseconds(10000);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                Parallel.ForEach<BarrageRequest>(_barrageCollection, (request) =>
-                {
-                    request.Run(client,chain, new UserModel { Name = "Test", Id = 1 });
-                });
 
+                foreach (var barrageRequest in _barrageCollection)
+                {
+                    await barrageRequest.Run(client, chain, new UserModel { Name = "Test", Id = 1 });
+                }
             }
         }
     }

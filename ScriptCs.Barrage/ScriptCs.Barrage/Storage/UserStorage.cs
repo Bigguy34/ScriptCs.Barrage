@@ -15,7 +15,7 @@ namespace ScriptCs.Barrage.Storage
         {
             using (var connection = new SQLiteConnection(Connection))
             {
-                return connection.ExecuteAsync(@"CREATE TABLE" + TableName + @"
+                return connection.ExecuteAsync(@"CREATE TABLE " + TableName + @"
                 (
                         Id  integer identity primary key AUTOINCREMENT,
                         Name text not null

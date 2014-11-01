@@ -16,9 +16,9 @@ namespace ScriptCs.Barrage.Data
 
         }
 
-        protected override Task<HttpResponseMessage> Execute(HttpClient client)
+        protected override async Task<HttpResponseMessage> Execute(HttpClient client)
         {
-            return client.GetAsync(Route);
+            return await client.GetAsync(Route);
         }
     }
 }

@@ -6,21 +6,29 @@ using System.Text;
 using System.Threading.Tasks;
 using Dapper;
 using System.Data.SQLite;
+using System.Configuration;
 
 namespace ScriptCs.Barrage.Storage
 {
     public abstract class BaseSql 
     {
-        public abstract Task CreateTables();
+        private readonly String _databaseLocation;
 
+        public BaseSql()
+        {
+            _databaseLocation = ConfigurationManager.AppSettings["SqliteConnection"];
+        }
+
+        public abstract Task CreateTables();
+        
         public abstract String TableName { get; }
 
-        public bool DoesTableExsist()
+        public bool TableExist()
         {
             using(var connection = new SQLiteConnection(Connection))
             {
-                var numberOfTables = connection.Query<int>("SELECT name FROM sqlite_master WHERE type='table' AND name='" + TableName + "';").First();
-                return numberOfTables > 0;
+                var numberOfTables = connection.Query(@"SELECT name FROM sqlite_master WHERE type='table' AND name='"+TableName+@"'");
+                return numberOfTables.Count() > 0;
             }
            
         }
@@ -29,7 +37,7 @@ namespace ScriptCs.Barrage.Storage
         {
             get
             {
-                return "Data Source=" + Environment.CurrentDirectory + "\\Barrage.sqlite";
+                return _databaseLocation;
             }
         }
     }

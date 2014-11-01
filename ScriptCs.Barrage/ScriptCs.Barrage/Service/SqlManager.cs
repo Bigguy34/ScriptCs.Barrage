@@ -13,7 +13,7 @@ namespace ScriptCs.Barrage.Service
         {
             foreach(var storageInstance in storageInstances)
             {
-                if(!storageInstance.DoesTableExsist()){
+                if(!storageInstance.TableExist()){
                     storageInstance.CreateTables();
                 }
             }

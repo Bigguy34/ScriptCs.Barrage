@@ -10,5 +10,6 @@ namespace Barrage.Tests.Api.Models
         public String Name { get; set; }
         public int Id { get; set; }
 
+
     }
 }

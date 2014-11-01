@@ -4,6 +4,7 @@
     using Nancy;
     using System.Collections.Generic;
     using System.Threading;
+    using Nancy.ModelBinding;
 
     public class IndexModule : NancyModule
     {
@@ -23,6 +24,40 @@
             {
                 Thread.Sleep(1000);
                 return new Product { Name = "beta", Id = parameters.Id };
+            };
+
+            Delete["/product/{id}"] = parameters =>
+            {
+                Thread.Sleep(500);
+                return HttpStatusCode.NoContent;
+            };
+
+            Post["/product/{id}"] = parameters =>
+            {
+                var product = this.Bind<Product>();
+                Thread.Sleep(500);
+                if (string.IsNullOrEmpty(product.Name))
+                {
+                    return HttpStatusCode.NotAcceptable;
+                }
+                else
+                {
+                    return HttpStatusCode.NoContent;
+                }
+            };
+
+            Put["product/{id}"] = parameters =>
+            {
+                var product = this.Bind<Product>();
+                Thread.Sleep(500);
+                if (string.IsNullOrEmpty(product.Name))
+                {
+                    return HttpStatusCode.NotAcceptable;
+                }
+                else
+                {
+                    return HttpStatusCode.NoContent;
+                }
             };
         }
     }

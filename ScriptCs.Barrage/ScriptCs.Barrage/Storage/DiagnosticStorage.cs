@@ -12,17 +12,18 @@ namespace ScriptCs.Barrage.Storage
     public class DiagnosticStorage : BaseSql, IDiagnosticsStorage
     {
 
-        public override Task CreateTables()
+        public override async Task CreateTables()
         {
             using (var connection = new SQLiteConnection(Connection))
             {
-                return connection.ExecuteAsync(@"CREATE TABLE" + TableName + @"
+                await connection.ExecuteAsync(@"CREATE TABLE " + TableName + @"
                 (
-                        Id  integer identity primary key AUTOINCREMENT,
+                        Id integer primary key AUTOINCREMENT,
                         RequestInterval real not null,
                         ChainId int not null,
                         UserId int not null,
-                        Date text not null
+                        Date text not null,
+                        Response text null
                         
                 )");
             }
@@ -33,10 +34,11 @@ namespace ScriptCs.Barrage.Storage
             using (var connection = new SQLiteConnection(Connection))
             {
                 diagnostic.Date = DateTime.Now;
-                var result = await connection.QueryAsync<int>(@"INSERT INTO DIAGNOSTIC(RequestInterval,RequestName,RequestId,UserId, Date) 
-                                                    VALUES(@RequestInterval, @ChainId, @UserId, @Date);
-                                                    select last_insert_rowid()", diagnostic);
-                return result.First();
+                var result = await connection.QueryAsync(@"INSERT INTO " + TableName + @"(RequestInterval,ChainId,UserId, Date, Response) 
+                                                    VALUES(@RequestInterval, @ChainId ,@UserId, @Date, @Response);
+                                                    select last_insert_rowid() as Id", diagnostic);
+                var Id = result.First().Id;
+                return Convert.ToInt32(Id);
             }
         }
 

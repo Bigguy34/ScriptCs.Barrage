@@ -7,16 +7,18 @@ using System.Threading.Tasks;
 
 namespace ScriptCs.Barrage.Service
 {
-    public class BarrageScenrioFactory
+    public class BarrageScenrioFactory : IBarrageScenrioFactory
     {
         private readonly IChainStorage _chainStorage;
-        public BarrageScenrioFactory(IChainStorage chainStorage)
+        private readonly IDiagnosticsStorage _diagnosticStorage;
+        public BarrageScenrioFactory(IChainStorage chainStorage,IDiagnosticsStorage diagnosticStorage)
         {
             _chainStorage = chainStorage;
+            _diagnosticStorage = diagnosticStorage;
         }
         
-        public BarrageScenrio BarrageScenrioCreate(){
-            return new BarrageScenrio(_chainStorage);
+        public BarrageScenrio CreateBarrageScenrio(){
+            return new BarrageScenrio(_chainStorage, _diagnosticStorage);
         }
     }
 }

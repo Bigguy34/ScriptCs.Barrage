@@ -18,16 +18,16 @@ namespace ScriptCs.Barrage.Data
         protected Func<HttpResponseMessage, BarrageRequest> Next;
         private IDiagnosticsStorage _diagnosticStorage;
 
-        protected BarrageRequest(string route, Func<HttpResponseMessage, BarrageRequest> next = null)
+        protected BarrageRequest(string route ,Func<HttpResponseMessage, BarrageRequest> next = null)
         {
             Route = route;
             Next = next;
         }
 
 
-        //Normally this would be constructor injection, hoever here I have changed it to be Setter Method Injection, for the sake of synatx
-        [Inject]
-        public void Load(IDiagnosticsStorage diagnosticStorage)
+        //Normally this would be constructor injection, however here I have changed it to be Setter Method Injection, for the sake of synatx
+        
+        public void LoadDepedencies(IDiagnosticsStorage diagnosticStorage)
         {
             _diagnosticStorage = diagnosticStorage;
         }
