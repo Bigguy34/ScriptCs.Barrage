@@ -103,6 +103,7 @@
     <Compile Include="Storage\BaseSql.cs" />
     <Compile Include="Storage\IDiagnosticsStorage.cs" />
     <Compile Include="Storage\Model\UserModel.cs" />
+    <Compile Include="Storage\StorageConfig.cs" />
     <Compile Include="Storage\UserStorage.cs" />
   </ItemGroup>
   <ItemGroup>

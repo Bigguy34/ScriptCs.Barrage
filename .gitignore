@@ -48,15 +48,17 @@ obj
 
 *.suo
 *.user
-/packages/*
-!/packages/NuGet.CommandLine.*
-/packages/NuGet.CommandLine.*/*
-/packages/NuGet.CommandLine.*/*.*
-!/packages/NuGet.CommandLine.*/tools
-/packages/NuGet.CommandLine.*/tools/*
-/packages/NuGet.CommandLine.*/tools/*.*
-!/packages/NuGet.CommandLine.*/tools/NuGet.exe
+packages/
 
 
 *.sln.ide
 TestResult
+
+ScriptCs.Barrage/Barrage.Tests.Api/bin/Debug/Barrage.Tests.Api.exe
+ScriptCs.Barrage/Barrage.Tests.Api/bin/Debug/Barrage.Tests.Api.pdb
+ScriptCs.Barrage/Barrage.Tests.Api/obj/Debug/Barrage.Tests.Api.csproj.FileListAbsolute.txt
+*.exe
+*.pdb
+*.pdb
+*.exe
+ScriptCs.Barrage/Barrage.Tests.Api/obj/Debug/Barrage.Tests.Api.csproj.FileListAbsolute.txt
