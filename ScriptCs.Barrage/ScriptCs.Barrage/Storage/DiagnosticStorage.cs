@@ -11,7 +11,7 @@ namespace ScriptCs.Barrage.Storage
 {
     public class DiagnosticStorage : BaseSql, IDiagnosticsStorage
     {
-
+        public DiagnosticStorage(StorageConfig config) : base(config) { }
         public override async Task CreateTables()
         {
             using (var connection = new SQLiteConnection(Connection))

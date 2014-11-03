@@ -11,6 +11,9 @@ namespace ScriptCs.Barrage.Storage
 {
     public class ChainStorage : BaseSql, IChainStorage
     {
+
+        public ChainStorage(StorageConfig config) : base(config) { }
+        
         public override async Task CreateTables()
         {
             using (var connection = new SQLiteConnection(Connection))

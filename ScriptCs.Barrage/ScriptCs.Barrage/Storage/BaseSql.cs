@@ -14,9 +14,9 @@ namespace ScriptCs.Barrage.Storage
     {
         private readonly String _databaseLocation;
 
-        public BaseSql()
+        public BaseSql(StorageConfig config)
         {
-            _databaseLocation = ConfigurationManager.AppSettings["SqliteConnection"];
+            _databaseLocation = config.ConnectionString;
         }
 
         public abstract Task CreateTables();

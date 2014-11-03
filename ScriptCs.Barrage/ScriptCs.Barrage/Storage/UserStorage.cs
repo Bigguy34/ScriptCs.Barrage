@@ -11,6 +11,7 @@ namespace ScriptCs.Barrage.Storage
 {
     public class UserStorage:BaseSql, IUserStorage
     {
+        public UserStorage(StorageConfig config) : base(config) { }
         public override Task CreateTables()
         {
             using (var connection = new SQLiteConnection(Connection))
