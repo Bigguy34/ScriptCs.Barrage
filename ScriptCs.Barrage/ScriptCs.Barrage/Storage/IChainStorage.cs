@@ -9,6 +9,7 @@ namespace ScriptCs.Barrage.Storage
 {
     public interface IChainStorage
     {
-        Task<int> Insert(ChainModel chain);
+        IChain Create(String Name);
+        void AddRequest(IChain chain,IDiagnostic diagnostic);
     }
 }

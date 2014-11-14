@@ -1,47 +1,37 @@
 ﻿using ScriptCs.Barrage.Storage.Model;
 using System;
 using System.Collections.Generic;
-using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Dapper;
 
 namespace ScriptCs.Barrage.Storage
 {
-    public class ChainStorage : BaseSql, IChainStorage
+    public class ChainStorage : DataManager, IChainStorage
     {
 
-        public ChainStorage(StorageConfig config) : base(config) { }
-        
-        public override async Task CreateTables()
+        public ChainStorage(IStorageConfig config) : base(config) { }
+
+        public IChain Create(String Name)
         {
-            using (var connection = new SQLiteConnection(Connection))
+            using(var ctx = new MyEntityContext(_config.ConnectionString))
             {
-                await connection.ExecuteAsync(@"CREATE TABLE "+TableName+@"
-                (
-                        Id  integer primary key AUTOINCREMENT,
-                        Name text not null
-                        
-                )");
-            }
-        }
-        
-        public async Task<int> Insert(ChainModel chain)
-        {
-            using (var connection = new SQLiteConnection(Connection))
-            {
-                var result = await connection.QueryAsync(@"INSERT INTO Chain(Name) 
-                                                    VALUES(@Name);
-                                                    select last_insert_rowid() as Id", chain);
-                var Id = result.First().Id;
-                return Convert.ToInt32(Id);
+                var chain = ctx.Chains.Create();
+                chain.Name = Name;
+                ctx.SaveChanges();
+                return chain;
             }
         }
 
-        public override string TableName
+        public void AddRequest(IChain chain,IDiagnostic diagnostic)
         {
-            get { return "Chain"; }
+            using (var ctx = new MyEntityContext(_config.ConnectionString))
+            {
+                var chainResult = ctx.Chains.First(x => x.Id == chain.Id.ToString());
+                chainResult.Requests.Add(diagnostic);
+                ctx.SaveChanges();
+            }
         }
+       
     }
 }

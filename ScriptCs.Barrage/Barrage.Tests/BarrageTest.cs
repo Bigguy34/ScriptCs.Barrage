@@ -22,9 +22,13 @@ namespace Barrage.Tests
         public BarrageTest()
         {
             IKernel kernel = new StandardKernel( new Bindings());
+            kernel.Bind<IStorageConfig>().ToConstant(new StorageConfig
+            {
+                DbDirectory = @"C:\data",
+
+            });
             //Service locator pattern is stupid, but this is a unit test.
             _scenrioFactory = kernel.Get<IBarrageScenrioFactory>();
-            SqlManager.CreateTables(kernel.Get<IDiagnosticsStorage>() as BaseSql, kernel.Get<IChainStorage>() as BaseSql);
         }
         
         [TestMethod]
@@ -65,11 +69,12 @@ namespace Barrage.Tests
         public async Task TestBarrageChainPostGet()
         {
             var scenerio = _scenrioFactory.CreateBarrageScenrio();
-            scenerio.Configure("http://localhost:8080", "test Chain");
+            scenerio.Configure("http://localhost:8080", "test Chain Get then Post");
             scenerio.Add(new Get("/product/1",
                 (requestResponse)=>{
                     return new Post("/product/", new { Name = "TomIsAwesome" });
                 }));
+            await scenerio.Start();
         }
     }
 }

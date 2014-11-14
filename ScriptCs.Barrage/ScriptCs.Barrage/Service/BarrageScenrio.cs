@@ -32,7 +32,7 @@ namespace ScriptCs.Barrage.Service
         public void Add(BarrageRequest barrageRequest)
         {
             //Load dependencies here for the sake of syntax
-            barrageRequest.LoadDepedencies(_diagnosticStorage);
+            barrageRequest.LoadDepedencies(_diagnosticStorage,_chainStorage);
             _barrageCollection.Add(barrageRequest);
         }
 
@@ -40,12 +40,7 @@ namespace ScriptCs.Barrage.Service
         {
             if (String.IsNullOrEmpty(_baseRoute)) throw new Exception("You must define a base route");
             if (String.IsNullOrEmpty(_name)) throw new Exception("You must define a name for the newly created scenerio");
-            var chain =  new ChainModel
-            {
-                Name = _name
-            };
-            var chainId = await _chainStorage.Insert(chain);
-            chain.Id = chainId;
+            var chain = _chainStorage.Create(_name);
             using (HttpClient client = new HttpClient())
             {
 
@@ -56,7 +51,7 @@ namespace ScriptCs.Barrage.Service
 
                 foreach (var barrageRequest in _barrageCollection)
                 {
-                    await barrageRequest.Run(client, chain, new UserModel { Name = "Test", Id = 1 });
+                    await barrageRequest.Run(client, chain);
                 }
             }
         }

@@ -1,50 +1,28 @@
 ﻿using ScriptCs.Barrage.Data;
 using System;
 using System.Collections.Generic;
-using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Dapper;
+using ScriptCs.Barrage.Storage.Model;
 
 namespace ScriptCs.Barrage.Storage
 {
-    public class DiagnosticStorage : BaseSql, IDiagnosticsStorage
+    public class DiagnosticStorage : DataManager, IDiagnosticsStorage
     {
-        public DiagnosticStorage(StorageConfig config) : base(config) { }
-        public override async Task CreateTables()
+        public DiagnosticStorage(IStorageConfig config) : base(config) { }
+        public IDiagnostic Create(TimeSpan requestInterval, DateTime date, String response)
         {
-            using (var connection = new SQLiteConnection(Connection))
+            using (var ctx = new MyEntityContext(_config.ConnectionString))
             {
-                await connection.ExecuteAsync(@"CREATE TABLE " + TableName + @"
-                (
-                        Id integer primary key AUTOINCREMENT,
-                        RequestInterval real not null,
-                        ChainId int not null,
-                        UserId int not null,
-                        Date text not null,
-                        Response text null
-                        
-                )");
-            }
-        }
 
-        public async Task<int> Insert(DiagnosticModel diagnostic)
-        {
-            using (var connection = new SQLiteConnection(Connection))
-            {
-                diagnostic.Date = DateTime.Now;
-                var result = await connection.QueryAsync(@"INSERT INTO " + TableName + @"(RequestInterval,ChainId,UserId, Date, Response) 
-                                                    VALUES(@RequestInterval, @ChainId ,@UserId, @Date, @Response);
-                                                    select last_insert_rowid() as Id", diagnostic);
-                var Id = result.First().Id;
-                return Convert.ToInt32(Id);
+                var diagnostics = ctx.Diagnostics.Create();
+                diagnostics.RequestInterval = requestInterval.Ticks;
+                diagnostics.Response = response;
+                diagnostics.Date = date;
+                ctx.SaveChanges();
+                return diagnostics;
             }
-        }
-
-        public override string TableName
-        {
-            get { return "Diagnostic"; }
         }
     }
 }
