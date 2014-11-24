@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Barrage.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ScriptCs.Barrage.Service
+namespace Barrage.Service
 {
     public interface IBarrageScenrioFactory
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ScriptCs.Barrage.Storage.Model
+namespace Barrage.Storage.Model
 {
     [Entity]
     public interface IDiagnostic

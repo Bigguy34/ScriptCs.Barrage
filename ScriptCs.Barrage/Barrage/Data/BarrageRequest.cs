@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Ninject;
-using ScriptCs.Barrage.Storage;
-using ScriptCs.Barrage.Storage.Model;
+using Barrage.Storage;
+using Barrage.Storage.Model;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,7 +10,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ScriptCs.Barrage.Data
+namespace Barrage.Data
 {
     public abstract class BarrageRequest
     {

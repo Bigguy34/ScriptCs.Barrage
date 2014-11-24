@@ -1,12 +1,12 @@
-﻿using ScriptCs.Barrage.Data;
+﻿using Barrage.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ScriptCs.Barrage.Storage.Model;
+using Barrage.Storage.Model;
 
-namespace ScriptCs.Barrage.Storage
+namespace Barrage.Storage
 {
     public class DiagnosticStorage : DataManager, IDiagnosticsStorage
     {

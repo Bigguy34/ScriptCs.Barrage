@@ -1,22 +1,22 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ScriptCs.Barrage.Data;
-using ScriptCs.Barrage.Service;
-using ScriptCs.Barrage.Storage;
+using Barrage.Data;
+using Barrage.Service;
+using Barrage.Storage;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Ninject;
 using System.Reflection;
-using ScriptCs.Barrage.Ninject;
+using Barrage.Ninject;
+using Barrage.Utils;
 
 namespace Barrage.Tests
 {
     [TestClass]
-    [DeploymentItem(@"x86\SQLite.Interop.dll", "x86")]
     public class BarrageTest
     {
 
-        private readonly IBarrageScenrioFactory _scenrioFactory;
+        private readonly IBarrageScenrioFactory _scenarioFactory;
         private readonly IDiagnosticsStorage _diagnosticStorage;
         private readonly IChainStorage _chainStorage;
         public BarrageTest()
@@ -28,53 +28,54 @@ namespace Barrage.Tests
 
             });
             //Service locator pattern is stupid, but this is a unit test.
-            _scenrioFactory = kernel.Get<IBarrageScenrioFactory>();
+            _scenarioFactory = kernel.Get<IBarrageScenrioFactory>();
         }
         
         [TestMethod]
         public async Task TestBarrageGet()
         {
-            var scenrio = _scenrioFactory.CreateBarrageScenrio();
-            scenrio.Configure("http://localhost:8080", "test get");
-            scenrio.Add(new Get("/product/1"));
-            await scenrio.Start();
+            var scenario = _scenarioFactory.CreateBarrageScenrio();
+            scenario.Configure("http://localhost:8080", "test get");
+            scenario.Add(new Get("/product/1"));
+            await scenario.Start();
         }
 
         [TestMethod]
         public async Task TestBarragePost()
         {
-            var scenerio = _scenrioFactory.CreateBarrageScenrio();
-            scenerio.Configure("http://localhost:8080", "test post");
-            scenerio.Add(new Post("/product", new { Name = "TomIsAwesome" }));
-            await scenerio.Start();
+            var scenario = _scenarioFactory.CreateBarrageScenrio();
+            scenario.Configure("http://localhost.fiddler:8080", "test post");
+            scenario.Add(new Post("/product/1", new { Name = "TomIsAwesome" }));
+            await scenario.Start();
         }
         [TestMethod]
         public async Task TestBarragePut()
         {
-            var scenerio = _scenrioFactory.CreateBarrageScenrio();
-            scenerio.Configure("http://localhost:8080", "test put");
-            scenerio.Add(new Put("/product", new { Name = "TomIsAwesome" }));
-            await scenerio.Start();
+            var scenario = _scenarioFactory.CreateBarrageScenrio();
+            scenario.Configure("http://localhost:8080", "test put");
+            scenario.Add(new Put("/product/1", new { Name = "TomIsAwesome" }));
+            await scenario.Start();
         }
         [TestMethod]
         public async Task TestBarrageDelete()
         {
-            var scenerio = _scenrioFactory.CreateBarrageScenrio();
-            scenerio.Configure("http://localhost:8080", "test Delete");
-            scenerio.Add(new Delete("/product/1"));
-            await scenerio.Start();
+            var scenario = _scenarioFactory.CreateBarrageScenrio();
+            scenario.Configure("http://localhost:8080", "test Delete");
+            scenario.Add(new Delete("/product/1"));
+            await scenario.Start();
         }
 
         [TestMethod]
         public async Task TestBarrageChainPostGet()
         {
-            var scenerio = _scenrioFactory.CreateBarrageScenrio();
-            scenerio.Configure("http://localhost:8080", "test Chain Get then Post");
-            scenerio.Add(new Get("/product/1",
+            var scenario = _scenarioFactory.CreateBarrageScenrio();
+            scenario.Configure("http://localhost.fiddler:8080", "test Chain Get then Post");
+            scenario.Add(new Get("/product/1",
                 (requestResponse)=>{
-                    return new Post("/product/", new { Name = "TomIsAwesome" });
+                    var response = ResponseContent.Convert(requestResponse.Content).Result;
+                    return new Post("/product/", new{ Id = response.Id });
                 }));
-            await scenerio.Start();
+            await scenario.Start();
         }
     }
 }

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ScriptCs.Barrage.Data;
-using ScriptCs.Barrage.Storage;
+using Barrage.Data;
+using Barrage.Storage;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using ScriptCs.Barrage.Storage.Model;
+using Barrage.Storage.Model;
 
-namespace ScriptCs.Barrage.Service
+namespace Barrage.Service
 {
     public class BarrageScenrio 
     {
@@ -17,7 +17,7 @@ namespace ScriptCs.Barrage.Service
         private string _baseRoute;
         private readonly IChainStorage _chainStorage;
         private readonly IDiagnosticsStorage _diagnosticStorage;
-        private string _name;
+        public string _name;
         public BarrageScenrio(IChainStorage chainStorage, IDiagnosticsStorage diagnosticStorage)
         {
             _barrageCollection = new List<BarrageRequest>();

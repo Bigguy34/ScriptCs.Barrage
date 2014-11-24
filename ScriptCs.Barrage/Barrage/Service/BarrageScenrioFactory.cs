@@ -1,11 +1,12 @@
-﻿using ScriptCs.Barrage.Storage;
+﻿using Barrage.Service;
+using Barrage.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ScriptCs.Barrage.Service
+namespace Barrage.Service
 {
     public class BarrageScenrioFactory : IBarrageScenrioFactory
     {

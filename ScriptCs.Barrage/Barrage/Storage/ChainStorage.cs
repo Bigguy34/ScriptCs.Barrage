@@ -1,11 +1,11 @@
-﻿using ScriptCs.Barrage.Storage.Model;
+﻿using Barrage.Storage.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ScriptCs.Barrage.Storage
+namespace Barrage.Storage
 {
     public class ChainStorage : DataManager, IChainStorage
     {

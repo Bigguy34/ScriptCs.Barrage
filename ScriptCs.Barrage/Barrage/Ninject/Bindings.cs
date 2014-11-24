@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Ninject;
 using Ninject.Modules;
-using ScriptCs.Barrage.Storage;
-using ScriptCs.Barrage.Service;
-using ScriptCs.Barrage.Data.ScriptCs;
+using Barrage.Storage;
+using Barrage.Service;
+using Barrage.Data;
 
-namespace ScriptCs.Barrage.Ninject
+namespace Barrage.Ninject
 {
     public class Bindings : NinjectModule
     {

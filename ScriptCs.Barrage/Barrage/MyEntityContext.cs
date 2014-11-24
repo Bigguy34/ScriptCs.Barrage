@@ -18,17 +18,17 @@ using System.Collections;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ScriptCs.Barrage 
+namespace Barrage 
 {
     public partial class MyEntityContext : BrightstarEntityContext {
     	
     	static MyEntityContext() 
     	{
     		var provider = new ReflectionMappingProvider();
-    		provider.AddMappingsForType(EntityMappingStore.Instance, typeof(ScriptCs.Barrage.Storage.Model.IChain));
-    		EntityMappingStore.Instance.SetImplMapping<ScriptCs.Barrage.Storage.Model.IChain, ScriptCs.Barrage.Storage.Model.Chain>();
-    		provider.AddMappingsForType(EntityMappingStore.Instance, typeof(ScriptCs.Barrage.Storage.Model.IDiagnostic));
-    		EntityMappingStore.Instance.SetImplMapping<ScriptCs.Barrage.Storage.Model.IDiagnostic, ScriptCs.Barrage.Storage.Model.Diagnostic>();
+    		provider.AddMappingsForType(EntityMappingStore.Instance, typeof(Barrage.Storage.Model.IChain));
+    		EntityMappingStore.Instance.SetImplMapping<Barrage.Storage.Model.IChain, Barrage.Storage.Model.Chain>();
+    		provider.AddMappingsForType(EntityMappingStore.Instance, typeof(Barrage.Storage.Model.IDiagnostic));
+    		EntityMappingStore.Instance.SetImplMapping<Barrage.Storage.Model.IDiagnostic, Barrage.Storage.Model.Diagnostic>();
     	}
     	
     	/// <summary>
@@ -94,26 +94,26 @@ namespace ScriptCs.Barrage
     	
     	private void InitializeContext() 
     	{
-    		Chains = 	new BrightstarEntitySet<ScriptCs.Barrage.Storage.Model.IChain>(this);
-    		Diagnostics = 	new BrightstarEntitySet<ScriptCs.Barrage.Storage.Model.IDiagnostic>(this);
+    		Chains = 	new BrightstarEntitySet<Barrage.Storage.Model.IChain>(this);
+    		Diagnostics = 	new BrightstarEntitySet<Barrage.Storage.Model.IDiagnostic>(this);
     	}
     	
-    	public IEntitySet<ScriptCs.Barrage.Storage.Model.IChain> Chains
+    	public IEntitySet<Barrage.Storage.Model.IChain> Chains
     	{
     		get; private set;
     	}
     	
-    	public IEntitySet<ScriptCs.Barrage.Storage.Model.IDiagnostic> Diagnostics
+    	public IEntitySet<Barrage.Storage.Model.IDiagnostic> Diagnostics
     	{
     		get; private set;
     	}
     	
         public IEntitySet<T> EntitySet<T>() where T : class {
             var itemType = typeof(T);
-            if (typeof(T).Equals(typeof(ScriptCs.Barrage.Storage.Model.IChain))) {
+            if (typeof(T).Equals(typeof(Barrage.Storage.Model.IChain))) {
                 return (IEntitySet<T>)this.Chains;
             }
-            if (typeof(T).Equals(typeof(ScriptCs.Barrage.Storage.Model.IDiagnostic))) {
+            if (typeof(T).Equals(typeof(Barrage.Storage.Model.IDiagnostic))) {
                 return (IEntitySet<T>)this.Diagnostics;
             }
             throw new InvalidOperationException(typeof(T).FullName + " is not a recognized entity interface type.");
@@ -122,7 +122,7 @@ namespace ScriptCs.Barrage
         } // end class MyEntityContext
         
 }
-namespace ScriptCs.Barrage.Storage.Model 
+namespace Barrage.Storage.Model 
 {
     
     public partial class Chain : BrightstarEntityObject, IChain 
@@ -130,29 +130,29 @@ namespace ScriptCs.Barrage.Storage.Model
     	public Chain(BrightstarEntityContext context, BrightstarDB.Client.IDataObject dataObject) : base(context, dataObject) { }
     	public Chain() : base() { }
     	public System.String Id { get {return GetKey(); } set { SetKey(value); } }
-    	#region Implementation of ScriptCs.Barrage.Storage.Model.IChain
+    	#region Implementation of Barrage.Storage.Model.IChain
     
     	public System.String Name
     	{
             		get { return GetRelatedProperty<System.String>("Name"); }
             		set { SetRelatedProperty("Name", value); }
     	}
-    	public System.Collections.Generic.ICollection<ScriptCs.Barrage.Storage.Model.IDiagnostic> Requests
+    	public System.Collections.Generic.ICollection<Barrage.Storage.Model.IDiagnostic> Requests
     	{
-    		get { return GetRelatedObjects<ScriptCs.Barrage.Storage.Model.IDiagnostic>("Requests"); }
+    		get { return GetRelatedObjects<Barrage.Storage.Model.IDiagnostic>("Requests"); }
     		set { if (value == null) throw new ArgumentNullException("value"); SetRelatedObjects("Requests", value); }
     								}
     	#endregion
     }
 }
-namespace ScriptCs.Barrage.Storage.Model 
+namespace Barrage.Storage.Model 
 {
     
     public partial class Diagnostic : BrightstarEntityObject, IDiagnostic 
     {
     	public Diagnostic(BrightstarEntityContext context, BrightstarDB.Client.IDataObject dataObject) : base(context, dataObject) { }
     	public Diagnostic() : base() { }
-    	#region Implementation of ScriptCs.Barrage.Storage.Model.IDiagnostic
+    	#region Implementation of Barrage.Storage.Model.IDiagnostic
     
     	public System.Int64 RequestInterval
     	{
@@ -172,10 +172,10 @@ namespace ScriptCs.Barrage.Storage.Model
             		set { SetRelatedProperty("Response", value); }
     	}
     
-    	public ScriptCs.Barrage.Storage.Model.IChain Chain
+    	public Barrage.Storage.Model.IChain Chain
     	{
-            get { return GetRelatedObject<ScriptCs.Barrage.Storage.Model.IChain>("Chain"); }
-            set { SetRelatedObject<ScriptCs.Barrage.Storage.Model.IChain>("Chain", value); }
+            get { return GetRelatedObject<Barrage.Storage.Model.IChain>("Chain"); }
+            set { SetRelatedObject<Barrage.Storage.Model.IChain>("Chain", value); }
     	}
     	#endregion
     }

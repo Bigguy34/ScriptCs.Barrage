@@ -22,10 +22,11 @@
                 };
             };
 
-            Get["/product/{id}"] = parameters =>
+            Get["/product/{Id}"] = parameters =>
             {
                 Thread.Sleep(1000);
-                this.Context.Trace.TraceLog.WriteLog(x=>x.AppendLine(string.Format("Get /product/{id} Called at {0} with parameters {1}", DateTime.Now, parameters.Id)));
+                var tracer = String.Format(@"Get /product/id Called at {0} with parameters {1}", DateTime.Now.ToString(), parameters.Id.ToString());
+                this.Context.Trace.TraceLog.WriteLog(x => x.AppendLine(tracer));
                 return new Product { Name = "beta", Id = parameters.Id };
             };
 

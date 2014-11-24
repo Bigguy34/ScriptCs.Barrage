@@ -7,24 +7,21 @@ using System.Threading.Tasks;
 
 namespace ScriptCs.Barrage
 {
-    public class BarrageScriptPack : IScriptPack
+    public class BarrageRequestScriptPack : IScriptPack
     {
         public IScriptPackContext GetContext()
         {
-            return new BarragePack();
+ 	        return new BarrageRequestPack();
         }
 
         public void Initialize(IScriptPackSession session)
         {
-          
-            session.ImportNamespace("Barrage.Data");
-            session.ImportNamespace("Barrage.Storage");
-            session.ImportNamespace("Barrage.Service");
+            session.AddReference("System.Net.Http");
         }
 
         public void Terminate()
         {
-           
+ 	        
         }
     }
 }

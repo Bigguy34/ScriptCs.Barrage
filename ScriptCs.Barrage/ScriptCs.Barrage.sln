@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScriptCs.Barrage", "ScriptCs.Barrage\ScriptCs.Barrage.csproj", "{B2FFC913-92B2-4E62-85CB-BC34C1E0B4B2}"
 EndProject
@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F0772E
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Barrage.Tests.Api", "Barrage.Tests.Api\Barrage.Tests.Api.csproj", "{35460AA4-B94A-4B64-9418-7243EC3D2F01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Barrage", "Barrage\Barrage.csproj", "{F11C6B4C-CA3C-4937-9CCB-A241F78A5883}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,6 +36,10 @@ Global
 		{35460AA4-B94A-4B64-9418-7243EC3D2F01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35460AA4-B94A-4B64-9418-7243EC3D2F01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35460AA4-B94A-4B64-9418-7243EC3D2F01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F11C6B4C-CA3C-4937-9CCB-A241F78A5883}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F11C6B4C-CA3C-4937-9CCB-A241F78A5883}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F11C6B4C-CA3C-4937-9CCB-A241F78A5883}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F11C6B4C-CA3C-4937-9CCB-A241F78A5883}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
