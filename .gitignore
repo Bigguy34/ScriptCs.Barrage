@@ -63,3 +63,5 @@ ScriptCs.Barrage/Barrage.Tests.Api/obj/Debug/Barrage.Tests.Api.csproj.FileListAb
 ScriptCs.Barrage/Barrage.Tests.Api/bin/Debug/Barrage.Tests.Api.exe
 ScriptCs.Barrage/Barrage.Tests.Api/bin/Debug/Barrage.Tests.Api.pdb
 *.pdb
+*.exe
+*.pdb
